@@ -1,0 +1,28 @@
+import  org.example.Facts;
+
+dialect "mvel"
+
+rule "Date of birth is not null2"
+    when
+        facts : Facts(factsList.get("Date of birth") != null);
+    then
+        System.out.println("Date of birth is not null2");
+        facts.getMessage.add("Date of birth is not null2");
+end;
+
+rule "Postcode is Marrickville2"
+    when
+        facts : Facts(factsList.get("Postcode") == "2204");
+    then
+        System.out.println("Postcode is Marrickville2");
+        facts.getMessage.add("Postcode is Marrickville2");
+end;
+
+rule "No valid email address2"
+    when
+        facts : Facts(factsList.get("Valid email address") == false);
+    then
+        System.out.println("No valid email address2");
+        facts.eligible = false;
+        facts.getMessage.add("No valid email address2");
+end;

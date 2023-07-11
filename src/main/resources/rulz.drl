@@ -1,0 +1,36 @@
+import  org.example.Facts;
+
+dialect "mvel"
+
+rule "GBL:Date of birth is not null"
+    when
+        facts : Facts(factsList.get("Date of birth") != null);
+    then
+        System.out.println("Date of birth is not null");
+        facts.getMessage.add("Date of birth is not null");
+end;
+
+rule "GBL:Not in collections"
+    when
+        facts : Facts(factsList.get("Collections") != null);
+    then
+        System.out.println("Collections");
+        facts.getMessage.add("Collections");
+end;
+
+rule "CUS:Postcode is Marrickville"
+    when
+        facts : Facts(factsList.get("Postcode") == "2204");
+    then
+        System.out.println("Postcode is Marrickville");
+        facts.getMessage.add("Postcode is Marrickville");
+end;
+
+rule "CNT:No valid email address"
+    when
+        facts : Facts(factsList.get("Valid email address") == false);
+    then
+        System.out.println("No valid email address");
+        facts.eligible = false;
+        facts.getMessage.add("No valid email address");
+end;
