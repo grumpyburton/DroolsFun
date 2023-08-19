@@ -34,3 +34,25 @@ rule "CNT:No valid email address"
         facts.eligible = false;
         facts.getMessage.add("No valid email address");
 end;
+/*
+rule "ACCT:At least one open savings account"
+    when
+        //facts : Facts(factsList.get("Accounts") != false);
+        $accounts : factsList.get("Accounts")
+        $account: Object() from $accounts
+        eval($account.getBalance() > 1)
+    then
+        System.out.println("No open savings account");
+        facts.eligible = false;
+        facts.getMessage.add("No open savings account");
+end;
+
+rule "Collect objects starting with A"
+when
+    $objects: List( size > 0 )
+    $object: Object() from $objects
+    eval( $object.getName().startsWith("A") )
+then
+    // Collect the object
+end
+*/
